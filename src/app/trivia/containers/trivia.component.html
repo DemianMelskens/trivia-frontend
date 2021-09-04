@@ -1,9 +1,5 @@
-<p>trivia works!</p>
-<div *ngFor="let question of questions | async">
-  <h1>{{question.category}}</h1>
-  <h4>{{question.difficulty}}</h4>
-  <h4>{{question.question}}</h4>
-  <h6 *ngFor="let option of question.options">
-    {{option}}
-  </h6>
-</div>
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let question of questions | async">
+    <app-card [question]="question" (onAnswer)="handleAnswer($event)"></app-card>
+  </mat-grid-tile>
+</mat-grid-list>

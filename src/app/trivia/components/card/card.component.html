@@ -1,0 +1,13 @@
+<mat-card class="card">
+  <mat-card-subtitle>{{question!.category}}</mat-card-subtitle>
+  <mat-card-title>{{question!.question}}</mat-card-title>
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip>{{question!.difficulty}}</mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <button mat-button *ngFor="let option of question!.options" (click)="pickAnswer(question!.question, option)">{{option}}</button>
+  </mat-card-actions>
+</mat-card>

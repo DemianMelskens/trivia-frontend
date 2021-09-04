@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TriviaClient} from "../clients/trivia.client";
 import {Observable} from "rxjs";
 import {Question} from "../domain/question.model";
+import {Answer} from "../domain/answer.model";
 
 @Component({
   selector: 'app-trivia',
@@ -19,4 +20,7 @@ export class TriviaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleAnswer(answer: Answer): void {
+    this.client.checkAnswer(answer).subscribe(result => console.log(result));
+  }
 }
