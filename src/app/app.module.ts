@@ -4,7 +4,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from "./material/material.module";
+import {NgxsModule} from "@ngxs/store";
+import {environment} from "../environments/environment";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import {MaterialModule} from "./material/material.module";
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxsModule.forRoot([], {developmentMode: !environment.production})
   ],
   providers: [],
   bootstrap: [AppComponent]

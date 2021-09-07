@@ -1,26 +1,26 @@
-import {Component, OnInit} from '@angular/core';
-import {TriviaClient} from "../clients/trivia.client";
+import {Component} from '@angular/core';
 import {Observable} from "rxjs";
 import {Question} from "../domain/question.model";
 import {Answer} from "../domain/answer.model";
+import {Store} from "@ngxs/store";
+import {CheckAnswer, GetQuestions} from "../state/trivia.actions";
+import {TriviaState} from "../state/trivia.state";
 
 @Component({
   selector: 'app-trivia',
   templateUrl: './trivia.component.html',
   styleUrls: ['./trivia.component.scss']
 })
-export class TriviaComponent implements OnInit {
+export class TriviaComponent {
 
   questions: Observable<Question[]>;
 
-  constructor(private client: TriviaClient) {
-    this.questions = this.client.getQuestions();
-  }
-
-  ngOnInit(): void {
+  constructor(private store: Store) {
+    this.store.dispatch(new GetQuestions());
+    this.questions = this.store.select(TriviaState.getQuestions);
   }
 
   handleAnswer(answer: Answer): void {
-    this.client.checkAnswer(answer).subscribe(result => console.log(result));
+    this.store.dispatch(new CheckAnswer(answer));
   }
 }

@@ -3,4 +3,5 @@ export interface Question {
   difficulty: string;
   question: string;
   options: string[];
+  correct: boolean;
 }
